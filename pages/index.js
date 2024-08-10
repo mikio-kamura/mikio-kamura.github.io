@@ -4,7 +4,7 @@ const Page = () => {
   return (
     <Container>
       <Box borderRadius="lg" bg="red" p={3} mb={6} align="center">
-        Hello, m mikio
+        Hello, I&apos;m mikio
       </Box>
 
       <Box display={{ md: "flex" }}>
