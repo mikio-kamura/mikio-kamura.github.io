@@ -1,2 +1,8 @@
+# next.js build output
+.next
+
+# Dependency direcrories
 node_modules/
+
+# OS-generated files
 .DS_STORE
