@@ -18,16 +18,17 @@ const LogoBox = styled.span`
 `;
 
 const Logo = () => {
-  const footPrintImg = `/images/footprint${useColorModeValue("", "-dark")}.png`;
+  // const logoImg = `./images/mikio-logo${useColorModeValue("", "-dark")}.png`;
+  const logoImg = `/images/mikio-logo.png`;
 
   return (
     <Link href="/">
       {/* <a> */}
       <LogoBox>
-        <Image src={footPrintImg} width={20} height={20} alt="logo" />
+        <Image src={logoImg} width={20} height={20} alt="logo" />
         <Text
           color={useColorModeValue("gray.800", "whiteAlpha.900")}
-          fontfamily="M PLUS Rounded 1c"
+          fontFamily="M PLUS Rounded 1c"
           fontWeight="bold"
           ml={3}
         >
