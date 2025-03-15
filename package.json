@@ -1,7 +1,7 @@
 {
-  "name": "mikio - Portfolio",
+  "name": "mikio",
   "version": "1.0.0",
-  "description": "mikio's portfolio",
+  "description": "mikio",
   "main": "index.js",
   "scripts": {
     "dev": "next dev -H 0.0.0.0",

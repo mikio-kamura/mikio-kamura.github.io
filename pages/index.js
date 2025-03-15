@@ -10,7 +10,7 @@ const Page = () => {
       <Box display={{ md: "flex" }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
-            mikio - Portfolio
+            mikio
           </Heading>
           <p>CraftzLady (Designer, Artist)</p>
         </Box>
