@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "hand motion",
-  description: "made by p5.js",
+  title: "hand manipulate hand ",
+  description: "made by mikio, with p5.js",
 };
 
 export default function RootLayout({
