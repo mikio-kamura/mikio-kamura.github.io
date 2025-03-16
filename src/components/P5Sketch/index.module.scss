@@ -38,3 +38,9 @@
         font-family: 'Times New Roman', Times, serif;
     }
 }
+
+.big {
+    @media (max-width: 768px) {
+        display: none;
+    }
+}

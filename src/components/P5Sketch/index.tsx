@@ -139,7 +139,7 @@ const P5Sketch = () => {
             />
             <p className={style.text}>hand manipulate hand</p>
             {isPC ? (
-                <p className={style.text_2}>move your hand to move the hands</p>
+                <p className={style.text_2}>move your hand to move the hand<span className={style.big}>s</span></p>
             ) : (
                 <p className={style.text_2}>drag to grasp</p>
             )}
