@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type p5Types from 'p5';
 
 import style from './index.module.scss';
@@ -14,6 +14,7 @@ const imageSizes: [number, number][] = [
 const P5Sketch = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const p5Instance = useRef<any>(null); // p5インスタンスを保持するref
+    const [isPC, setIsPC] = useState(true);
 
     useEffect(() => {
         // クリーンアップ用の関数
@@ -21,11 +22,25 @@ const P5Sketch = () => {
             if (p5Instance.current) {
                 p5Instance.current.remove();
                 p5Instance.current = null;
+                window.removeEventListener('resize', checkDevice);
             }
         };
 
         // 既存のインスタンスがあれば削除
         cleanup();
+
+        const checkDevice = () => {
+            const isTouchDevice = (
+                'ontouchstart' in window ||
+                navigator.maxTouchPoints > 0 ||
+                window.matchMedia('(hover: none) and (pointer: coarse)').matches
+            );
+            const isMobileUA = /iPhone|iPad|Android|Mobile/.test(navigator.userAgent);
+            setIsPC(!isTouchDevice && !isMobileUA);
+        };
+
+        checkDevice();
+        window.addEventListener('resize', checkDevice);
 
         import('p5').then(p5Module => {
             const p5 = p5Module.default;
@@ -34,9 +49,19 @@ const P5Sketch = () => {
                 let img: p5Types.Image[] = [];
                 const imgW: number[] = [];
                 const imgH: number[] = [];
-                const div = 2;
-                const hw = 200;
-                const hh = 200;
+                let div = 1.5;
+                let div2 = 1.6;
+                let hw = 200;
+
+                if (window.innerWidth <= 768) {
+                    div = 1.8;
+                    div2 = 1.4;
+                    hw = 170;
+                }
+
+                if (window.innerWidth <= 380) {
+                    hw = 150;
+                }
 
                 p.preload = () => {
                     for (let i = 0; i < 16; i++) {
@@ -74,24 +99,26 @@ const P5Sketch = () => {
                         p.image(
                             img[num],
                             hw - (802 - imgW[num]) / div / 2,
-                            window.innerHeight / 2 + (1163 - imgH[num]) / div / 2,
+                            window.innerHeight / div2 + (1163 - imgH[num]) / div / 2,
                             imgW[num] / div,
                             imgH[num] / div
                         );
                     }
 
-                    if (window.innerWidth >= 650 && img[numY]) {
-                        p.push();
-                        p.scale(-1, 1);
-                        p.translate(-p.width, 0);
-                        p.image(
-                            img[numY],
-                            hw - (802 - imgW[numY]) / div / 2,
-                            window.innerHeight / 2 + (1163 - imgH[numY]) / div / 2,
-                            imgW[numY] / div,
-                            imgH[numY] / div
-                        );
-                        p.pop();
+                    if (window.innerWidth >= 768) {
+                        if (img[numY]) {
+                            p.push();
+                            p.scale(-1, 1);
+                            p.translate(-p.width, 0);
+                            p.image(
+                                img[numY],
+                                hw - (802 - imgW[numY]) / div / 2,
+                                window.innerHeight / div2 + (1163 - imgH[numY]) / div / 2,
+                                imgW[numY] / div,
+                                imgH[numY] / div
+                            );
+                            p.pop();
+                        }
                     }
                 };
             };
@@ -105,10 +132,19 @@ const P5Sketch = () => {
     }, []);
 
     return (
-        <div
-            ref={containerRef}
-            className={style.container}
-        />
+        <div className={style.container}>
+            <div
+                ref={containerRef}
+                className={style.canvas}
+            />
+            <p className={style.text}>hand manipulate hand</p>
+            {isPC ? (
+                <p className={style.text_2}>move your hand to move the hands</p>
+            ) : (
+                <p className={style.text_2}>drag to grasp</p>
+            )}
+            <footer className={style.text_3}>@mikio_kamura</footer>
+        </div>
     );
 };
 

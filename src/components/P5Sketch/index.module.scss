@@ -1,3 +1,40 @@
 .container {
     margin: 0 auto;
+    position: relative;
+}
+
+.text {
+    position: absolute;
+    width: 100%;
+    bottom: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+
+    &_2 {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        bottom: 80.5%;
+        transform: translate(-50%, -50%);
+        color: #666;
+        font-size: 1.2rem;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    &_3 {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        bottom: 0.5%;
+        transform: translate(-50%, -50%);
+        color: #666;
+        font-size: 1.2rem;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+    }
 }
