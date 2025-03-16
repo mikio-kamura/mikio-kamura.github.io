@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components/P5Sketch/index.tsx -> p5\":{\"id\":\"components/P5Sketch/index.tsx -> p5\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_p5_lib_p5_min_js.js\"]}}"
